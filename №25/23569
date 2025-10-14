@@ -20,7 +20,7 @@ while c < 5:
         a1=prost[0]
         a2=prost[1]
         
-        if str(a1).count('6') and str(a2).count('6'):
+        if str(a1).count('6') == 1 and str(a2).count('6') == 1:
             m = max(a1, a2)
             resultat.append((N, m))
             c += 1
