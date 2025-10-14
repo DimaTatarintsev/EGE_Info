@@ -1,0 +1,38 @@
+def pros_poisc(n):
+    p = []
+    d = 2
+    while d * d <= n:
+        while n % d == 0:
+            p.append(d)
+            n //= d
+        d += 1
+    if n > 1:
+        p.append(n)
+    return p
+
+c = 0
+N = 5400001
+resultat = []
+
+
+while c < 5:
+    e = pros_poisc(N)
+    
+    s = []
+    for d in e:
+        if d != N:
+            s.append(d)
+
+    if len(s) >= 1:
+        minn = min(s)
+        maxx = max(s)
+        M = minn+ maxx
+
+        if M > 60000 and str(M)==str(M)[::-1]:
+            resultat.append((N, M))
+            c += 1
+    
+    N += 1
+
+for x, M in resultat:
+    print(f"{x} {M}")
