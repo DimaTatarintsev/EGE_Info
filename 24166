@@ -1,0 +1,27 @@
+def pros_poisc(n):
+    p = []
+    d = 2
+    while d * d <= n:
+        while n % d == 0:
+            p.append(d)
+            n //= d
+        d += 1
+    if n > 1:
+        p.append(n)
+    return p
+
+c = 0
+N = 7305679
+resultat = []
+
+while c < 5:
+    prost = pros_poisc(N)
+    if len(prost) == 4:
+        s = sum(prost)  
+        if str(s)==str(s)[::-1]:
+            resultat.append((N, s))
+            c += 1  
+    N += 1   
+for x, s in resultat:
+    print(f"{x} {s}")
+
