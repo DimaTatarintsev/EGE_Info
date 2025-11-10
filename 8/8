@@ -1,0 +1,153 @@
+#1
+
+k = 0
+v=[]
+w = 'АКОРСТ'
+for a in w:
+    for b in w:
+        for c in w:
+            for d in w:
+                for e in w:
+                        word = a+b+c+d+e
+                        k += 1
+                        if k % 2 == 0 and a != 'А' and a != 'С' and a != 'Т' and word.count('О')==2:
+                            v.append((k,word))   
+                            print(f'{k} {word}')
+
+
+#2
+'''
+k = 0
+w = '01234' 
+even = '024'  
+valid_numbers = []
+
+for a in w:
+    for b in w:
+        for c in w:
+            for d in w:
+                for e in w:
+                    for f in w:
+                        for g in w:
+                            for h in w:
+                                for i in w:
+                                    num = a + b + c + d + e + f + g + h + i
+                                    k += 1
+                                    pairs_count = 0
+                                    for pos in range(8):
+                                        if num[pos] in even and num[pos+1] in even:
+                                            pairs_count += 1
+                                    has_three_even = False
+                                    for pos in range(7):
+                                        if (num[pos] in even and 
+                                            num[pos+1] in even and 
+                                            num[pos+2] in even):
+                                            has_three_even = True
+                                            break
+                                    if pairs_count == 2 and not has_three_even:
+                                        valid_numbers.append(num)
+                        
+print(f"Количество чисел: {len(valid_numbers)}")
+'''
+#3
+'''
+count = 0
+digits7 = '0123456'
+even = '0246'
+
+for a in digits7:
+    if a == '0': continue   
+    for b in digits7:
+        for c in digits7:
+            for d in digits7:
+                for e in digits7:
+                    num = a + b + c + d + e
+   
+                    three_even = False
+                    for i in range(3):
+                        if num[i] in even and num[i+1] in even and num[i+2] in even:
+                            three_even = True
+                            break
+                    if three_even:
+                        continue
+х
+                    pairs = 0
+                    for i in range(4):
+                        if num[i] in even and num[i+1] in even:
+                            pairs += 1
+                    if pairs >= 2:
+                        count += 1
+print("3. Ответ:", count)
+'''
+#4
+'''
+count = 0
+digits12 = '0123456789AB'
+odd = '13579B'
+
+for a in digits12:
+    if a == '0': continue 
+    for b in digits12:
+        for c in digits12:
+            for d in digits12:
+                for e in digits12:
+                    num = a + b + c + d + e
+                    pairs = 0
+                    for i in range(4):
+                        if num[i] in odd and num[i+1] in odd:
+                            pairs += 1
+                    if pairs <= 2:
+                        count += 1
+print("4. Ответ:", count)
+'''
+#5
+'''
+even_d = '02468'
+odd_d = '13579'
+
+def valid_num(n):
+    s = str(n)
+    for i in range(4):
+        if (s[i] in even_d and s[i+1] in even_d) or (s[i] in odd_d and s[i+1] in odd_d):
+            return False
+    return True
+
+numbers = []
+for num in range(10000, 100000):
+    if valid_num(num):
+        numbers.append(num)
+
+last_index = -1
+for idx, val in enumerate(numbers, start=1):
+    if idx % 15 == 0:
+        last_index = idx
+print("5. Номер последнего кратного 15:", last_index)
+'''
+#6
+'''
+from itertools import product
+digits16 = '0123456789ABCDEF'
+digits38 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+count = 0
+for d0, d1, d2, d3, d5 in product(digits16, repeat=5):
+    if d0 == '0':
+        continue
+    s16 = d0 + d1 + d2 + d3 + 'A' + d5
+    n = int(s16, 16)
+    tmp = n
+    digits = []
+    while tmp > 0:
+        digits.append(digits38[tmp % 38])
+        tmp //= 38
+    if len(digits) != 7:
+        continue
+    digits.reverse()
+    if digits[4] != '2':
+        continue
+    if digits[0] == '0':
+        continue
+    count += 1
+
+print("6. Ответ:", count)
+'''
