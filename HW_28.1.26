@@ -1,0 +1,139 @@
+#1
+
+f = open('9_7030.csv', 'r')
+c = 0
+for i in f.readlines():
+    a = list(map(int, i.strip().split(';')))
+    n = set(a)
+    if len(n)==3 and all(a.count(x)== 2 for x in n):
+        s = sorted(list(n))
+        s1, s2, s3 = s[0], s[1], s[2]
+        if s1**2 + s2**2 == s3**2:
+            c+=1
+print(c)
+
+
+        c += 1
+print(c)
+
+#2
+
+f = open('9_7335.xls', 'r')
+c = 0
+for i in f.readlines():
+    a = list(map(int, i.strip().split(';')))
+    
+    c1 = False
+    if len(set(a)) == 4:
+        avg = (min(a) + max(a)) / 2
+        ip = int(avg)
+        if ip in a:
+            c1 = True
+    
+    c2 = False
+    d = {}
+    for x in a:
+        d[x] = d.get(x, 0) + 1
+    
+    r = [x for x, cnt in d.items() if cnt > 1]
+    nr = [x for x, cnt in d.items() if cnt == 1]
+    
+    if r:
+        sr = sum(x**2 for x in r)
+        snr = sum(x**2 for x in nr)
+        if sr < snr:
+            c2 = True
+    
+    if (c1 and not c2) or (c2 and not c1):
+        c += 1
+print(c)
+
+#3
+
+f = open('9_7350.xlsx', 'r')
+c = 0
+for i in f.readlines():
+    a = list(map(int, i.strip().split(';')))
+    
+    p = 1
+    for x in a:
+        for d in str(x):
+            p *= int(d)
+    
+    s = sum(a)
+    
+    if p > s:
+        c += 1
+print(c)
+
+
+#4
+
+f = open('9_8554.xlsx', 'r')
+c = 0
+for i in f.readlines():
+    a = list(map(int, i.strip().split(';')))
+    
+    t = sum(1 for x in a if abs(x) % 10 == 3)
+    if t != 3:
+        continue
+    
+    ps = sum(x for x in a if x > 0)
+    ns = sum(x for x in a if x < 0)
+    
+    if ps**2 < ns**2:
+        c += 1
+print(c)
+
+#5
+
+f = open('9_9539.xlsx', 'r')
+c = 0
+for i in f.readlines():
+    a = list(map(int, i.strip().split(';')))
+    d = {}
+    for x in a:
+        d[x] = d.get(x, 0) + 1
+    
+    p = [x for x, cnt in d.items() if cnt == 2]
+    u = [x for x, cnt in d.items() if cnt == 1]
+    
+    if len(p) == 2 and len(u) == 1:
+        p1, p2 = sorted(p)
+        v = u[0]
+        if p1 < v < p2:
+            c += 1
+print(c)
+
+#6
+
+f = open('9_8365.csv', 'r')
+c = 0
+from itertools import combinations
+for i in f.readlines():
+    a = list(map(int, i.strip().split(';')))
+    
+    if len(set(a)) != 5:
+        continue
+    
+    fnd = False
+    for s in a:
+        r = [x for x in a if x != s]
+        prs = list(combinations(r, 2))
+        
+        for j in range(len(prs)):
+            for k in range(j+1, len(prs)):
+                p1, p2 = prs[j], prs[k]
+                if len(set(p1 + p2)) != 4:
+                    continue
+                a1 = sum(p1)/2
+                a2 = sum(p2)/2
+                if abs(a1-s) < 1e-9 and abs(a2-s) < 1e-9:
+                    fnd = True
+                    break
+            if fnd: break
+        if fnd: break
+    
+    if fnd:
+        c += 1
+print(c)
